@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAGU TAKAYAMA | 民泊運営代行</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: #ffffff;
+            color: #1a1a1a;
+            font-family: "游明朝", "YuMincho", "Hiragino Mincho ProN", serif;
+            -webkit-font-smoothing: antialiased;
+            line-height: 2.8;
+            letter-spacing: 0.18em;
+        }
+
+        /* --- 1. HERO: 背景写真と文字のオーバーレイ --- */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #333; /* 写真が読み込まれるまでの待機色 */
+        }
+
+        /* 文字の背景になる画像 */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* ここにメインの背景画像を設定してください */
+            background-image: url(images/head.jpg); 
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.8); /* 文字を読みやすくするため少し暗く */
+            z-index: 1;
+            opacity: 0;
+            animation: imgFadeIn 3s ease forwards;
+        }
+
+        /* 写真の上に薄いヴェールをかける（さらに洗練させるため） */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.1); 
+            z-index: 2;
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 3; /* 写真とヴェールより上に配置 */
+            writing-mode: vertical-rl;
+            -webkit-writing-mode: vertical-rl;
+            height: 60vh;
+            color: #ffffff; /* 背景が写真なので、文字は白（または非常に薄いグレー）が映えます */
+            text-shadow: 0 0 20px rgba(0,0,0,0.2); /* 視認性を確保 */
+        }
+
+        .main-copy {
+            font-size: 3.2rem;
+            letter-spacing: 0.7em;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fIn 2.5s ease forwards 1s;
+        }
+
+        .sub-copy {
+            font-size: 1.1rem;
+            margin-right: 50px;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fIn 2.5s ease forwards 2.5s;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        @keyframes imgFadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes fIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 以下、コンテンツセクション（背景は白に戻る） --- */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 8vw;
+        }
+
+        section { padding: 250px 0; }
+        .label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.5em;
+            color: #bbb;
+            margin-bottom: 100px;
+            display: block;
+        }
+        .content-body { max-width: 750px; margin-left: auto; }
+        .content-body p { margin-bottom: 4em; }
+
+        .service-list { margin-top: 80px; border-top: 1px solid #eee; }
+        .service-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 80px 0;
+            border-bottom: 1px solid #eee;
+            align-items: baseline;
+        }
+        .service-name { font-size: 1.3rem; font-weight: 400; }
+        .service-price { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #888; }
+
+        footer {
+            padding: 150px 0 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 0.8rem;
+            color: #999;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 768px) {
+            .main-copy { font-size: 2.2rem; }
+            .sub-copy { margin-right: 20px; font-size: 0.9rem; }
+            .content-body { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-text">
+            <h1 class="main-copy">お客様へ、笑顔を。</h1>
+            <p class="sub-copy">
+                細部まで手を尽くす清掃で、<br>
+                お客様が安心して宿泊できる憩いの場所を作り出します。
+            </p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="concept">
+            <span class="label">CONCEPT</span>
+            <div class="content-body">
+                <p>なぜ清掃を私たちが大切にするかというと、清掃がなければ宿泊業は成り立たないからです。また、民泊の始めやすさから、「やったら儲かるでしょ」ぐらいの気持ちで初めて失敗してる方を多く見てきました。</p>
+                <p>清掃だけではないですが、清掃は確実にレビューに響きます。お客様が喜び楽しむ顔を思い浮かべ、細部までこだわった清掃をし、最高の宿を提供できるのは私たちだけです。</p>
+                <p>もちろん私たちが直接褒められることは少ないかも知れませんが、オーナー様の宿を最高に仕上げるのが私たちのお仕事なので、自信、そして誇りをもち取り組みます。</p>
+                <p>いい宿にするためには、高級なものを揃えればとか、立地が良ければなど単純でないこと。そこを私たちの知識をもって全面にお力添えできればいいと考えてます。</p>
+            </div>
+        </section>
+
+        <!-- (以下、Service, Story, Footerは前回の構成を維持) -->
+        <section id="service">
+            <span class="label">SERVICE</span>
+            <div class="service-list">
+                <div class="service-item">
+                    <div class="service-name">清掃代行 <small>(80平米目安)</small></div>
+                    <div class="service-price">¥9,000 —</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name">リネン管理</div>
+                    <div class="service-price">清掃費 ＋ ¥10,000</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name">ゲスト対応・物件点検</div>
+                    <div class="service-price">+ ¥10,000</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="story">
+            <span class="label">OUR STORY</span>
+            <div class="content-body">
+                <p>高山の地で10年前から民泊を始め、培った民泊の知恵を、今度は民泊を始めたい人のために使いたいと思い代行をすることに決めました。</p>
+            </div>
+        </section>
+
+        <footer>
+            <div>NAGU TAKAYAMA / 株式会社 〇〇</div>
+            <div>&copy; 2026 NAGU TAKAYAMA</div>
+        </footer>
+    </div>
+
+</body>
+</html>
