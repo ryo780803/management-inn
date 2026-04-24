@@ -7,191 +7,119 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #ffffff; color: #1a1a1a; font-family: "游明朝", "YuMincho", "Hiragino Mincho ProN", serif; -webkit-font-smoothing: antialiased; line-height: 2.2; letter-spacing: 0.1em; }
+
+        /* --- HERO --- */
+        .hero { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #333; }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url(images/head.jpg); background-size: cover; background-position: center; filter: brightness(0.8); z-index: 1; opacity: 0; animation: imgFadeIn 3s ease forwards; }
+        .hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.2); z-index: 2; }
         
-        body {
-            background-color: #ffffff;
-            color: #1a1a1a;
-            font-family: "游明朝", "YuMincho", "Hiragino Mincho ProN", serif;
-            -webkit-font-smoothing: antialiased;
-            line-height: 2.8;
-            letter-spacing: 0.18em;
-        }
+        .logo-area { position: absolute; top: 30px; left: 4vw; z-index: 10; color: #ffffff; opacity: 0; animation: fInLogo 2s ease forwards 0.5s; }
+        .logo-name { font-size: 1.4rem; letter-spacing: 0.2em; font-weight: bold; }
 
-        /* --- 1. HERO: 背景写真と文字のオーバーレイ --- */
-        .hero {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background-color: #333; /* 写真が読み込まれるまでの待機色 */
-        }
+        .hero-text { position: relative; z-index: 3; writing-mode: vertical-rl; height: 80vh; color: #ffffff; text-shadow: 0 0 10px rgba(0,0,0,0.3); }
+        .main-copy { font-size: 2.8rem; letter-spacing: 0.7em; white-space: nowrap; opacity: 0; transform: translateY(60px); animation: fInText 2.5s ease-out forwards 1.2s; }
+        .sub-copy { font-size: 1.0rem; margin-right: 70px; opacity: 0; transform: translateY(60px); animation: fInText 2.5s ease-out forwards 2.8s; color: rgba(255, 255, 255, 0.9); }
 
-        /* 文字の背景になる画像 */
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* ここにメインの背景画像を設定してください */
-            background-image: url(images/head.jpg); 
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.8); /* 文字を読みやすくするため少し暗く */
-            z-index: 1;
-            opacity: 0;
-            animation: imgFadeIn 3s ease forwards;
-        }
+        /* --- CONTENT --- */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 5vw; }
+        section { padding: 150px 0; }
+        .label { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; letter-spacing: 0.5em; color: #bbb; margin-bottom: 80px; display: block; }
 
-        /* 写真の上に薄いヴェールをかける（さらに洗練させるため） */
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.1); 
-            z-index: 2;
-        }
+        /* Concept (横書きスタイル) */
+        .content-body p { margin-bottom: 2em; line-height: 2.2; }
 
-        .hero-text {
-            position: relative;
-            z-index: 3; /* 写真とヴェールより上に配置 */
-            writing-mode: vertical-rl;
-            -webkit-writing-mode: vertical-rl;
-            height: 60vh;
-            color: #ffffff; /* 背景が写真なので、文字は白（または非常に薄いグレー）が映えます */
-            text-shadow: 0 0 20px rgba(0,0,0,0.2); /* 視認性を確保 */
-        }
+        /* --- SERVICE --- */
+        .service-list { margin-top: 60px; border-top: 1px solid #e0e0e0; }
+        .service-item { display: flex; justify-content: space-between; padding: 60px 0; border-bottom: 1px solid #e0e0e0; }
+        .service-name { font-size: 1.2rem; width: 40%; font-weight: 500; }
+        .service-desc { font-size: 0.95rem; color: #777; width: 55%; line-height: 2.0; }
 
-        .main-copy {
-            font-size: 3.2rem;
-            letter-spacing: 0.7em;
-            opacity: 0;
-            transform: translateY(40px);
-            animation: fIn 2.5s ease forwards 1s;
-        }
+        /* --- PRICE --- */
+        .price-container { max-width: 800px; margin: 60px auto 0; border-top: 1px solid #333; display: flex; flex-wrap: wrap; }
+        .price-row { display: flex; justify-content: space-between; padding: 25px 20px; border-bottom: 1px solid #eee; width: 50%; box-sizing: border-box; }
+        .price-row:nth-child(odd) { border-right: 1px solid #eee; }
+        .price-row div:last-child { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; }
 
-        .sub-copy {
-            font-size: 1.1rem;
-            margin-right: 50px;
-            opacity: 0;
-            transform: translateY(40px);
-            animation: fIn 2.5s ease forwards 2.5s;
-            color: rgba(255, 255, 255, 0.9);
-        }
+        /* --- WORKS --- */
+        .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
+        .works-img { width: 100%; aspect-ratio: 4/3; background-color: #eee; overflow: hidden; }
+        .works-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+        .works-item:hover .works-img img { transform: scale(1.05); }
+        .works-info { margin-top: 15px; font-size: 0.9rem; color: #555; }
 
-        @keyframes imgFadeIn {
-            to { opacity: 1; }
-        }
+        /* --- CONTACT --- */
+        .contact-btn { display: inline-block; padding: 20px 60px; border: 1px solid #1a1a1a; text-decoration: none; color: #1a1a1a; letter-spacing: 0.2em; margin-top: 40px; transition: 0.3s; }
+        .contact-btn:hover { background: #1a1a1a; color: #fff; }
 
-        @keyframes fIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- 以下、コンテンツセクション（背景は白に戻る） --- */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 8vw;
-        }
-
-        section { padding: 250px 0; }
-        .label {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.8rem;
-            letter-spacing: 0.5em;
-            color: #bbb;
-            margin-bottom: 100px;
-            display: block;
-        }
-        .content-body { max-width: 750px; margin-left: auto; }
-        .content-body p { margin-bottom: 4em; }
-
-        .service-list { margin-top: 80px; border-top: 1px solid #eee; }
-        .service-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 80px 0;
-            border-bottom: 1px solid #eee;
-            align-items: baseline;
-        }
-        .service-name { font-size: 1.3rem; font-weight: 400; }
-        .service-price { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #888; }
-
-        footer {
-            padding: 150px 0 100px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            font-size: 0.8rem;
-            color: #999;
-            border-top: 1px solid #eee;
-        }
-
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .main-copy { font-size: 2.2rem; }
-            .sub-copy { margin-right: 20px; font-size: 0.9rem; }
-            .content-body { margin-left: 0; }
+            .main-copy { font-size: 1.6rem; }
+            .service-item, .price-row, .works-grid { flex-direction: column; grid-template-columns: 1fr; }
+            .service-name, .service-desc, .price-row { width: 100%; }
+            .price-container { display: block; }
+            .price-row { border-right: none !important; }
         }
     </style>
 </head>
 <body>
 
-    <header class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-text">
-            <h1 class="main-copy">お客様へ、笑顔を。</h1>
-            <p class="sub-copy">
-                細部まで手を尽くす清掃で、<br>
-                お客様が安心して宿泊できる憩いの場所を作り出します。
-            </p>
-        </div>
-    </header>
-
-    <div class="container">
-        <section id="concept">
-            <span class="label">CONCEPT</span>
-            <div class="content-body">
-                <p>なぜ清掃を私たちが大切にするかというと、清掃がなければ宿泊業は成り立たないからです。また、民泊の始めやすさから、「やったら儲かるでしょ」ぐらいの気持ちで初めて失敗してる方を多く見てきました。</p>
-                <p>清掃だけではないですが、清掃は確実にレビューに響きます。お客様が喜び楽しむ顔を思い浮かべ、細部までこだわった清掃をし、最高の宿を提供できるのは私たちだけです。</p>
-                <p>もちろん私たちが直接褒められることは少ないかも知れませんが、オーナー様の宿を最高に仕上げるのが私たちのお仕事なので、自信、そして誇りをもち取り組みます。</p>
-                <p>いい宿にするためには、高級なものを揃えればとか、立地が良ければなど単純でないこと。そこを私たちの知識をもって全面にお力添えできればいいと考えてます。</p>
-            </div>
-        </section>
-
-        <!-- (以下、Service, Story, Footerは前回の構成を維持) -->
-        <section id="service">
-            <span class="label">SERVICE</span>
-            <div class="service-list">
-                <div class="service-item">
-                    <div class="service-name">清掃代行 <small>(80平米目安)</small></div>
-                    <div class="service-price">¥9,000 —</div>
-                </div>
-                <div class="service-item">
-                    <div class="service-name">リネン管理</div>
-                    <div class="service-price">清掃費 ＋ ¥10,000</div>
-                </div>
-                <div class="service-item">
-                    <div class="service-name">ゲスト対応・物件点検</div>
-                    <div class="service-price">+ ¥10,000</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="story">
-            <span class="label">OUR STORY</span>
-            <div class="content-body">
-                <p>高山の地で10年前から民泊を始め、培った民泊の知恵を、今度は民泊を始めたい人のために使いたいと思い代行をすることに決めました。</p>
-            </div>
-        </section>
-
-        <footer>
-            <div>NAGU TAKAYAMA / 株式会社 〇〇</div>
-            <div>&copy; 2026 NAGU TAKAYAMA</div>
-        </footer>
+<header class="hero">
+    <div class="hero-bg"></div>
+    <div class="logo-area"><div class="logo-name">ビューノ飛騨高山</div></div>
+    <div class="hero-text">
+        <h1 class="main-copy">お客様へ、笑顔を。</h1>
+        <p class="sub-copy">細部まで手を尽くす清掃で、<br>お客様が安心して宿泊できる憩いの場所を作り出します。</p>
     </div>
+</header>
 
+<div class="container">
+    <section id="concept">
+        <span class="label">CONCEPT</span>
+        <div class="content-body">
+            <p>なぜ清掃を私たちが大切にするかというと、清掃がなければ宿泊業は成り立たないからです。また、民泊の始めやすさから、「やったら儲かるでしょ」ぐらいの気持ちで初めて失敗してる方を多く見てきました。</p>
+            <p>清掃だけではないですが、清掃は確実にレビューに響きます。お客様が喜び楽しむ顔を思い浮かべ、細部までこだわった清掃をし、最高の宿を提供できるのは私たちだけです。</p>
+            <p>もちろん私たちが直接褒められることは少ないかも知れませんが、オーナー様の宿を最高に仕上げるのが私たちのお仕事なので、自信、そして誇りをもち取り組みます。</p>
+            <p>いい宿にするためには、高級なものを揃えればとか、立地が良ければなど単純でないこと。そこを私たちの知識をもって全面にお力添えできればいいと考えてます。</p>
+        </div>
+    </section>
+
+    <section id="service">
+        <span class="label">SERVICE</span>
+        <div class="service-list">
+            <div class="service-item"><div class="service-name">コンサルティング・計画作成</div><div class="service-desc">オーナー様の意図を汲み取り、運用計画を立案します。</div></div>
+            <div class="service-item"><div class="service-name">丸ごと代行プラン</div><div class="service-desc">インテリア選定から集客まで、全て一括管理します。</div></div>
+            <div class="service-item"><div class="service-name">清掃・駆けつけ業務</div><div class="service-desc">日々の清掃から、緊急時の対応まで確実に行います。</div></div>
+            <div class="service-item"><div class="service-name">ダイナミックプライシング</div><div class="service-desc">周辺イベント等に合わせて、無駄のない価格調整を実施します。</div></div>
+        </div>
+    </section>
+
+    <section id="price">
+        <span class="label">CLEANING FEE</span>
+        <div class="price-container">
+            <div class="price-row"><div>70 — 80㎡</div><div>¥9,000</div></div>
+            <div class="price-row"><div>80 — 90㎡</div><div>¥9,500</div></div>
+            <div class="price-row"><div>90 — 100㎡</div><div>¥10,000</div></div>
+            <div class="price-row"><div>100 — 125㎡</div><div>¥13,000</div></div>
+            <div class="price-row"><div>125 — 140㎡</div><div>¥15,000</div></div>
+            <div class="price-row"><div>140㎡以上</div><div>要相談</div></div>
+        </div>
+    </section>
+
+    <section id="works">
+        <span class="label">WORKS</span>
+        <div class="works-grid">
+            <div class="works-item"><div class="works-img"><img src="images/work1.jpg" alt="実績"></div><div class="works-info">高山市内・古民家再生物件</div></div>
+            <div class="works-item"><div class="works-img"><img src="images/work2.jpg" alt="実績"></div><div class="works-info">駅近・デザイナーズアパート</div></div>
+            <div class="works-item"><div class="works-img"><img src="images/work3.jpg" alt="実績"></div><div class="works-info">ファミリー向け・一軒家</div></div>
+        </div>
+    </section>
+
+    <section id="contact" style="text-align: center; padding: 100px 0;">
+        <span class="label">CONTACT</span>
+        <p>運営のご相談や物件の詳細など、お気軽にお問い合わせください。</p>
+        <a href="mailto:example@email.com" class="contact-btn">お問い合わせはこちら</a>
+    </section>
+</div>
 </body>
 </html>
