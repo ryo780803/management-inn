@@ -7,59 +7,66 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #ffffff; color: #1a1a1a; font-family: "游明朝", "YuMincho", "Hiragino Mincho ProN", serif; -webkit-font-smoothing: antialiased; line-height: 2.2; letter-spacing: 0.1em; }
+        body { background-color: #ffffff; color: #000000; font-family: "游明朝", "YuMincho", "Hiragino Mincho ProN", serif; -webkit-font-smoothing: antialiased; line-height: 2.2; letter-spacing: 0.1em; }
 
         /* --- HERO --- */
-        .hero { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #333; }
-        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url(images/head.jpg); background-size: cover; background-position: center; filter: brightness(0.8); z-index: 1; opacity: 0; animation: imgFadeIn 3s ease forwards; }
-        .hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.2); z-index: 2; }
+        .hero { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background-image:url(images/head.jpg); background-repeat: no-repeat; background-size: cover;}
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; filter: brightness(0.8); z-index: 1; opacity: 0; animation: imgFadeIn 3s ease forwards; }
+        .hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.2); z-index: 2; }
         
-        .logo-area { position: absolute; top: 30px; left: 4vw; z-index: 10; color: #ffffff; opacity: 0; animation: fInLogo 2s ease forwards 0.5s; }
+        .logo-area { position: absolute; top: 30px; left: 4vw; z-index: 10; color: #000000; opacity: 0; animation: fInLogo 2s ease forwards 0.5s; }
         .logo-name { font-size: 1.4rem; letter-spacing: 0.2em; font-weight: bold; }
 
-        .hero-text { position: relative; z-index: 3; writing-mode: vertical-rl; height: 80vh; color: #ffffff; text-shadow: 0 0 10px rgba(0,0,0,0.3); }
+        .hero-text { position: relative; z-index: 3; writing-mode: vertical-rl; height: 80vh; color: #000000; }
         .main-copy { font-size: 2.8rem; letter-spacing: 0.7em; white-space: nowrap; opacity: 0; transform: translateY(60px); animation: fInText 2.5s ease-out forwards 1.2s; }
-        .sub-copy { font-size: 1.0rem; margin-right: 70px; opacity: 0; transform: translateY(60px); animation: fInText 2.5s ease-out forwards 2.8s; color: rgba(255, 255, 255, 0.9); }
+        .sub-copy { font-size: 1.0rem; margin-right: 70px; opacity: 0; transform: translateY(60px); animation: fInText 2.5s ease-out forwards 2.8s; color: #333; }
 
         /* --- CONTENT --- */
         .container { max-width: 1000px; margin: 0 auto; padding: 0 5vw; }
-        section { padding: 150px 0; }
-        .label { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; letter-spacing: 0.5em; color: #bbb; margin-bottom: 80px; display: block; }
+        section { padding: 100px 0; }
+        .label { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; letter-spacing: 0.5em; color: #555; margin-bottom: 60px; display: block; }
 
-        /* Concept (横書きスタイル) */
-        .content-body p { margin-bottom: 2em; line-height: 2.2; }
+        /* --- CONCEPT & PROFILE --- */
+        .content-body p { margin-bottom: 2em; }
+        .profile-container { display: flex; align-items: flex-start; gap: 60px; margin-top: 40px; }
+        .profile-img { width: 300px; aspect-ratio: 3/4; background-color: #eee; flex-shrink: 0; }
+        .profile-img img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-text h3 { font-size: 1.5rem; margin-bottom: 20px; }
+        .profile-text .name { font-weight: bold; margin-bottom: 20px; border-bottom: 1px solid #000; padding-bottom: 10px; display: inline-block; }
 
         /* --- SERVICE --- */
         .service-list { margin-top: 60px; border-top: 1px solid #e0e0e0; }
         .service-item { display: flex; justify-content: space-between; padding: 60px 0; border-bottom: 1px solid #e0e0e0; }
         .service-name { font-size: 1.2rem; width: 40%; font-weight: 500; }
-        .service-desc { font-size: 0.95rem; color: #777; width: 55%; line-height: 2.0; }
+        .service-desc { font-size: 0.95rem; color: #777; width: 55%; }
 
         /* --- PRICE --- */
-        .price-container { max-width: 800px; margin: 60px auto 0; border-top: 1px solid #333; display: flex; flex-wrap: wrap; }
+        .price-container { max-width: 800px; margin: 60px auto 0; border-top: 1px solid #000; display: flex; flex-wrap: wrap; }
         .price-row { display: flex; justify-content: space-between; padding: 25px 20px; border-bottom: 1px solid #eee; width: 50%; box-sizing: border-box; }
         .price-row:nth-child(odd) { border-right: 1px solid #eee; }
         .price-row div:last-child { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; }
 
         /* --- WORKS --- */
         .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
-        .works-img { width: 100%; aspect-ratio: 4/3; background-color: #eee; overflow: hidden; }
-        .works-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
-        .works-item:hover .works-img img { transform: scale(1.05); }
+        .works-img { width: 100%; aspect-ratio: 4/3; background-color: #eee; }
+        .works-img img { width: 100%; height: 100%; object-fit: cover; }
         .works-info { margin-top: 15px; font-size: 0.9rem; color: #555; }
 
         /* --- CONTACT --- */
-        .contact-btn { display: inline-block; padding: 20px 60px; border: 1px solid #1a1a1a; text-decoration: none; color: #1a1a1a; letter-spacing: 0.2em; margin-top: 40px; transition: 0.3s; }
-        .contact-btn:hover { background: #1a1a1a; color: #fff; }
+        .contact-btn { display: inline-block; padding: 20px 60px; border: 1px solid #000000; text-decoration: none; color: #000000; letter-spacing: 0.2em; margin-top: 40px; transition: 0.3s; }
+        .contact-btn:hover { background: #000000; color: #fff; }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .main-copy { font-size: 1.6rem; }
+            .profile-container { flex-direction: column; }
+            .profile-img { width: 100%; }
             .service-item, .price-row, .works-grid { flex-direction: column; grid-template-columns: 1fr; }
             .service-name, .service-desc, .price-row { width: 100%; }
             .price-container { display: block; }
             .price-row { border-right: none !important; }
         }
+        @keyframes imgFadeIn { to { opacity: 1; } }
+        @keyframes fInLogo { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fInText { to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -79,18 +86,27 @@
         <div class="content-body">
             <p>なぜ清掃を私たちが大切にするかというと、清掃がなければ宿泊業は成り立たないからです。また、民泊の始めやすさから、「やったら儲かるでしょ」ぐらいの気持ちで初めて失敗してる方を多く見てきました。</p>
             <p>清掃だけではないですが、清掃は確実にレビューに響きます。お客様が喜び楽しむ顔を思い浮かべ、細部までこだわった清掃をし、最高の宿を提供できるのは私たちだけです。</p>
-            <p>もちろん私たちが直接褒められることは少ないかも知れませんが、オーナー様の宿を最高に仕上げるのが私たちのお仕事なので、自信、そして誇りをもち取り組みます。</p>
-            <p>いい宿にするためには、高級なものを揃えればとか、立地が良ければなど単純でないこと。そこを私たちの知識をもって全面にお力添えできればいいと考えてます。</p>
+        </div>
+    </section>
+
+    <section id="profile" style="padding-top: 0;">
+        <span class="label">PROFILE</span>
+        <div class="profile-container">
+            <div class="profile-img"><img src="images/owner.jpg" alt="オーナー"></div>
+            <div class="profile-text">
+                <h3>代表紹介</h3>
+                <p class="name">氏名 太郎（Taro Ujina）</p>
+                <p>高山市出身。10年間にわたり地元で宿泊施設を運営。現場第一主義を掲げ、清掃こそがお客様の満足度に直結するという信念を持つ。「単に部屋を綺麗にするだけでなく、高山の空気感まで届ける」ことを目指し、民泊運営の全工程を代行。</p>
+            </div>
         </div>
     </section>
 
     <section id="service">
         <span class="label">SERVICE</span>
         <div class="service-list">
-            <div class="service-item"><div class="service-name">コンサルティング・計画作成</div><div class="service-desc">オーナー様の意図を汲み取り、運用計画を立案します。</div></div>
-            <div class="service-item"><div class="service-name">丸ごと代行プラン</div><div class="service-desc">インテリア選定から集客まで、全て一括管理します。</div></div>
-            <div class="service-item"><div class="service-name">清掃・駆けつけ業務</div><div class="service-desc">日々の清掃から、緊急時の対応まで確実に行います。</div></div>
-            <div class="service-item"><div class="service-name">ダイナミックプライシング</div><div class="service-desc">周辺イベント等に合わせて、無駄のない価格調整を実施します。</div></div>
+            <div class="service-item"><div class="service-name">コンサルティング</div><div class="service-desc">オーナー様の意図を汲み取り、運用計画を立案します。</div></div>
+            <div class="service-item"><div class="service-name">丸ごと代行</div><div class="service-desc">インテリア選定から集客まで一括管理します。</div></div>
+            <div class="service-item"><div class="service-name">清掃・駆けつけ</div><div class="service-desc">日々の清掃から緊急時の対応まで確実に行います。</div></div>
         </div>
     </section>
 
@@ -109,15 +125,14 @@
     <section id="works">
         <span class="label">WORKS</span>
         <div class="works-grid">
-            <div class="works-item"><div class="works-img"><img src="images/work1.jpg" alt="実績"></div><div class="works-info">高山市内・古民家再生物件</div></div>
-            <div class="works-item"><div class="works-img"><img src="images/work2.jpg" alt="実績"></div><div class="works-info">駅近・デザイナーズアパート</div></div>
-            <div class="works-item"><div class="works-img"><img src="images/work3.jpg" alt="実績"></div><div class="works-info">ファミリー向け・一軒家</div></div>
+            <div class="works-item"><div class="works-img"><img src="images/work1.jpg" alt="実績"></div><div class="works-info">古民家再生物件</div></div>
+            <div class="works-item"><div class="works-img"><img src="images/work2.jpg" alt="実績"></div><div class="works-info">デザイナーズアパート</div></div>
+            <div class="works-item"><div class="works-img"><img src="images/work3.jpg" alt="実績"></div><div class="works-info">一軒家貸切物件</div></div>
         </div>
     </section>
 
     <section id="contact" style="text-align: center; padding: 100px 0;">
         <span class="label">CONTACT</span>
-        <p>運営のご相談や物件の詳細など、お気軽にお問い合わせください。</p>
         <a href="mailto:example@email.com" class="contact-btn">お問い合わせはこちら</a>
     </section>
 </div>
