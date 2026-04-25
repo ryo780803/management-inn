@@ -3,138 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAGU TAKAYAMA | 民泊運営代行</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
+    <title>ビューノ飛騨高山 | 民泊運営代行</title>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #ffffff; color: #000000; font-family: "游明朝", "YuMincho", "Hiragino Mincho ProN", serif; -webkit-font-smoothing: antialiased; line-height: 2.2; letter-spacing: 0.1em; }
+        body { font-family: 'Zen Old Mincho', serif; color: #1a1a1a; line-height: 2.2; letter-spacing: 0.1em; background: #fff; }
 
-        /* --- HERO --- */
-        .hero { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background-image:url(images/head.jpg); background-repeat: no-repeat; background-size: cover;}
-        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; filter: brightness(0.8); z-index: 1; opacity: 0; animation: imgFadeIn 3s ease forwards; }
-        .hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.2); z-index: 2; }
+        /* ヘッダー固定 */
+        .site-header { 
+            position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; 
+            padding: 30px 6vw; align-items: center; z-index: 2000; background: #fff; border-bottom: 1px solid #eee;
+        }
+        .logo-name { font-size: 1.2rem; letter-spacing: 0.3em; font-weight: 500; }
+        .site-nav { display: flex; gap: 40px; }
+        .site-nav a { text-decoration: none; color: #1a1a1a; font-family: 'Cormorant Garamond', serif; }
+
+        /* HERO：縦書き収容 */
+        .hero { 
+            position: relative; width: 100%; height: 100vh; background-color: #f0f0f0 ; background-image: url(images/head.jpg); background-repeat: no-repeat;  background-size: cover;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .hero-text-group { 
+            writing-mode:horizontal-tb;  align-items: center; height: 60vh; gap: 60px;
+        }
+        .main-copy { font-size: 2rem; letter-spacing: 1.5em; white-space: nowrap; font-weight: 500;  margin-top: 50%; color: white; text-shadow: 2px 2px 5px rgba(0,0 , 0, 1.5);}
+        .sub-copy { font-size: 1.2srem; color: whitesmoke; line-height: 2.2; text-shadow: 2px 2px 5px rgba(0,0 , 0, 1.5);}
+
+        /* コンテンツ */
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px 6vw; }
+        section { padding: 60px 0; }
+        .label { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; letter-spacing: 0.6em; color: #bbb; display: block; margin-bottom: 60px; }
         
-        .logo-area { position: absolute; top: 30px; left: 4vw; z-index: 10; color: #000000; opacity: 0; animation: fInLogo 2s ease forwards 0.5s; }
-        .logo-name { font-size: 1.4rem; letter-spacing: 0.2em; font-weight: bold; }
+        /* コンセプト */
+       .concept {margin-top: 0;}
 
-        .hero-text { position: relative; z-index: 3; writing-mode: vertical-rl; height: 80vh; color: #000000; }
-        .main-copy { font-size: 2.8rem; letter-spacing: 0.7em; white-space: nowrap; opacity: 0; transform: translateY(60px); animation: fInText 2.5s ease-out forwards 1.2s; }
-        .sub-copy { font-size: 1.0rem; margin-right: 70px; opacity: 0; transform: translateY(60px); animation: fInText 2.5s ease-out forwards 2.8s; color: #333; }
+        /* サービス・料金・実績等のスタイル */
+        .profile-container { display: flex; gap: 60px; align-items: flex-start; }
+        .profile-img {width: 50%;}
+        .profile-p {width: 50%;}
+        .service-item { display: flex; padding: 40px 0; border-bottom: 1px solid #eee; }
+        .service-name { width: 40%; font-weight: 500; }
+        .service-desc { width: 60%; color: #777; }
+        .price-row { display: flex; padding: 20px; border-bottom: 1px solid #eee; justify-content: space-between; }
+        .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+        .works-img { width: 100%; aspect-ratio: 4/3; background: #eee; }
 
-        /* --- CONTENT --- */
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 5vw; }
-        section { padding: 100px 0; }
-        .label { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; letter-spacing: 0.5em; color: #555; margin-bottom: 60px; display: block; }
+        /* フッタースタイル */
+        .site-footer { background-color: #f9f9f9; padding: 100px 6vw; text-align: center; border-top: 1px solid #eee; }
+        .footer-logo { font-size: 1.2rem; letter-spacing: 0.3em; margin-bottom: 30px; font-weight: 500; }
+        .contact-btn { 
+            display: inline-block; padding: 20px 60px; border: 1px solid #1a1a1a; 
+            text-decoration: none; color: #1a1a1a; letter-spacing: 0.2em; margin-bottom: 50px; 
+        }
+        .copyright { font-size: 0.8rem; color: #aaa; font-family: 'Cormorant Garamond', serif; }
 
-        /* --- CONCEPT & PROFILE --- */
-        .content-body p { margin-bottom: 2em; }
-        .profile-container { display: flex; align-items: flex-start; gap: 60px; margin-top: 40px; }
-        .profile-img { width: 300px; aspect-ratio: 3/4; background-color: #eee; flex-shrink: 0; }
-        .profile-img img { width: 100%; height: 100%; object-fit: cover; }
-        .profile-text h3 { font-size: 1.5rem; margin-bottom: 20px; }
-        .profile-text .name { font-weight: bold; margin-bottom: 20px; border-bottom: 1px solid #000; padding-bottom: 10px; display: inline-block; }
-
-        /* --- SERVICE --- */
-        .service-list { margin-top: 60px; border-top: 1px solid #e0e0e0; }
-        .service-item { display: flex; justify-content: space-between; padding: 60px 0; border-bottom: 1px solid #e0e0e0; }
-        .service-name { font-size: 1.2rem; width: 40%; font-weight: 500; }
-        .service-desc { font-size: 0.95rem; color: #777; width: 55%; }
-
-        /* --- PRICE --- */
-        .price-container { max-width: 800px; margin: 60px auto 0; border-top: 1px solid #000; display: flex; flex-wrap: wrap; }
-        .price-row { display: flex; justify-content: space-between; padding: 25px 20px; border-bottom: 1px solid #eee; width: 50%; box-sizing: border-box; }
-        .price-row:nth-child(odd) { border-right: 1px solid #eee; }
-        .price-row div:last-child { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; }
-
-        /* --- WORKS --- */
-        .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
-        .works-img { width: 100%; aspect-ratio: 4/3; background-color: #eee; }
-        .works-img img { width: 100%; height: 100%; object-fit: cover; }
-        .works-info { margin-top: 15px; font-size: 0.9rem; color: #555; }
-
-        /* --- CONTACT --- */
-        .contact-btn { display: inline-block; padding: 20px 60px; border: 1px solid #000000; text-decoration: none; color: #000000; letter-spacing: 0.2em; margin-top: 40px; transition: 0.3s; }
-        .contact-btn:hover { background: #000000; color: #fff; }
+        /* ハンバーガーメニュー */
+        .menu-btn { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
+        .menu-btn span { width: 25px; height: 2px; background: #1a1a1a; }
+        .mobile-nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #fff; z-index: 2500; flex-direction: column; justify-content: center; align-items: center; gap: 30px; }
 
         @media (max-width: 768px) {
-            .profile-container { flex-direction: column; }
-            .profile-img { width: 100%; }
-            .service-item, .price-row, .works-grid { flex-direction: column; grid-template-columns: 1fr; }
-            .service-name, .service-desc, .price-row { width: 100%; }
-            .price-container { display: block; }
-            .price-row { border-right: none !important; }
+            .site-nav { display: none; }
+            .menu-btn { display: flex; }
+            .main-copy { font-size: 1.2rem; }
         }
-        @keyframes imgFadeIn { to { opacity: 1; } }
-        @keyframes fInLogo { to { opacity: 1; transform: translateY(0); } }
-        @keyframes fInText { to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-<header class="hero">
-    <div class="hero-bg"></div>
-    <div class="logo-area"><div class="logo-name">ビューノ飛騨高山</div></div>
-    <div class="hero-text">
+<header class="site-header">
+    <div class="logo-name">ビューノ飛騨高山</div>
+    <nav class="site-nav">
+        <a href="#concept">CONCEPT</a>
+        <a href="#profile">PROFILE</a>
+        <a href="#service">SERVICE</a>
+        <a href="#price">PRICE</a>
+        <a href="#works">WORKS</a>
+    </nav>
+    <div class="menu-btn" onclick="document.querySelector('.mobile-nav').style.display='flex'">
+        <span></span><span></span><span></span>
+    </div>
+</header>
+
+<div class="mobile-nav" onclick="this.style.display='none'">
+    <a href="#concept">CONCEPT</a>
+    <a href="#profile">PROFILE</a>
+    <a href="#service">SERVICE</a>
+    <a href="#price">PRICE</a>
+    <a href="#works">WORKS</a>
+</div>
+
+<section class="hero">
+    <div class="hero-text-group">
         <h1 class="main-copy">お客様へ、笑顔を。</h1>
         <p class="sub-copy">細部まで手を尽くす清掃で、<br>お客様が安心して宿泊できる憩いの場所を作り出します。</p>
     </div>
-</header>
+</section>
 
 <div class="container">
     <section id="concept">
         <span class="label">CONCEPT</span>
-        <div class="content-body">
-            <p>なぜ清掃を私たちが大切にするかというと、清掃がなければ宿泊業は成り立たないからです。また、民泊の始めやすさから、「やったら儲かるでしょ」ぐらいの気持ちで初めて失敗してる方を多く見てきました。</p>
-            <p>清掃だけではないですが、清掃は確実にレビューに響きます。お客様が喜び楽しむ顔を思い浮かべ、細部までこだわった清掃をし、最高の宿を提供できるのは私たちだけです。</p>
-        </div>
+        <p>なぜ清掃を私たちが大切にするかというと、清掃がなければ宿泊業は成り立たないからです。また、民泊の始めやすさから、「やったら儲かるでしょ」ぐらいの気持ちで初めて失敗してる方を多く見てきました。<br><br>清掃だけではないですが、清掃は確実にレビューに響きます。お客様が喜び楽しむ顔を思い浮かべ、細部までこだわった清掃をし、最高の宿を提供できるのは私たちだけです。<br><br>もちろん私たちが直接褒められることは少ないかも知れませんが、オーナー様の宿を最高に仕上げるのが私たちのお仕事なので、自信、そして誇りをもち取り組みます。<br><br>いい宿にするためには、高級なものを揃えればとか、立地が良ければなど単純でないこと。そこを私たちの知識をもって全面にお力添えできればいいと考えてます。</p>
     </section>
 
-    <section id="profile" style="padding-top: 0;">
+    <section id="profile">
         <span class="label">PROFILE</span>
         <div class="profile-container">
-            <div class="profile-img"><img src="images/owner.jpg" alt="オーナー"></div>
-            <div class="profile-text">
-                <h3>代表紹介</h3>
-                <p class="name">氏名 太郎（Taro Ujina）</p>
-                <p>高山市出身。10年間にわたり地元で宿泊施設を運営。現場第一主義を掲げ、清掃こそがお客様の満足度に直結するという信念を持つ。「単に部屋を綺麗にするだけでなく、高山の空気感まで届ける」ことを目指し、民泊運営の全工程を代行。</p>
+            <div class="profile-img" style="width:300px; height:400px; background:#eee;"></div>
+            <div class="profile-p">
+                <h3>代表紹介：氏名 太郎（Taro Ujina）</h3>
+                <p>高山市出身。10年間にわたり地元で宿泊施設を運営。現場第一主義を掲げ、清掃こそがお客様の満足度に直結するという信念を持つ。<br><br>「単に部屋を綺麗にするだけでなく、高山の空気感まで届ける」ことを目指し、民泊運営の全工程を代行。多くの宿泊者のレビューで高評価を獲得し続けている。</p>
             </div>
         </div>
     </section>
 
     <section id="service">
         <span class="label">SERVICE</span>
-        <div class="service-list">
-            <div class="service-item"><div class="service-name">コンサルティング</div><div class="service-desc">オーナー様の意図を汲み取り、運用計画を立案します。</div></div>
-            <div class="service-item"><div class="service-name">丸ごと代行</div><div class="service-desc">インテリア選定から集客まで一括管理します。</div></div>
-            <div class="service-item"><div class="service-name">清掃・駆けつけ</div><div class="service-desc">日々の清掃から緊急時の対応まで確実に行います。</div></div>
-        </div>
+        <div class="service-item"><div class="service-name">コンサルティング・計画作成</div><div class="service-desc">オーナー様の意図を汲み取り、運用計画を立案します。</div></div>
+        <div class="service-item"><div class="service-name">丸ごと代行プラン</div><div class="service-desc">インテリア選定から集客まで、全て一括管理します。</div></div>
+        <div class="service-item"><div class="service-name">清掃・駆けつけ業務</div><div class="service-desc">日々の清掃から、緊急時の対応まで確実に行います。</div></div>
+        <div class="service-item"><div class="service-name">ダイナミックプライシング</div><div class="service-desc">周辺イベント等に合わせて、無駄のない価格調整を実施します。</div></div>
     </section>
 
     <section id="price">
         <span class="label">CLEANING FEE</span>
-        <div class="price-container">
-            <div class="price-row"><div>70 — 80㎡</div><div>¥9,000</div></div>
-            <div class="price-row"><div>80 — 90㎡</div><div>¥9,500</div></div>
-            <div class="price-row"><div>90 — 100㎡</div><div>¥10,000</div></div>
-            <div class="price-row"><div>100 — 125㎡</div><div>¥13,000</div></div>
-            <div class="price-row"><div>125 — 140㎡</div><div>¥15,000</div></div>
-            <div class="price-row"><div>140㎡以上</div><div>要相談</div></div>
-        </div>
+        <div class="price-row"><div>70 — 80㎡</div><div>¥9,000</div></div>
+        <div class="price-row"><div>80 — 90㎡</div><div>¥9,500</div></div>
+        <div class="price-row"><div>90 — 100㎡</div><div>¥10,000</div></div>
+        <div class="price-row"><div>100 — 125㎡</div><div>¥13,000</div></div>
+        <div class="price-row"><div>125 — 140㎡</div><div>¥15,000</div></div>
+        <div class="price-row"><div>140㎡以上</div><div>要相談</div></div>
     </section>
 
     <section id="works">
         <span class="label">WORKS</span>
         <div class="works-grid">
-            <div class="works-item"><div class="works-img"><img src="images/work1.jpg" alt="実績"></div><div class="works-info">古民家再生物件</div></div>
-            <div class="works-item"><div class="works-img"><img src="images/work2.jpg" alt="実績"></div><div class="works-info">デザイナーズアパート</div></div>
-            <div class="works-item"><div class="works-img"><img src="images/work3.jpg" alt="実績"></div><div class="works-info">一軒家貸切物件</div></div>
+            <div class="works-img"></div>
+            <div class="works-img"></div>
+            <div class="works-img"></div>
         </div>
     </section>
-
-    <section id="contact" style="text-align: center; padding: 100px 0;">
-        <span class="label">CONTACT</span>
-        <a href="mailto:example@email.com" class="contact-btn">お問い合わせはこちら</a>
-    </section>
 </div>
+
+<footer class="site-footer">
+    <p class="footer-logo">ビューノ飛騨高山</p>
+    <p style="margin-bottom: 50px;">まずはお悩みを相談してみませんか。<br>無料にて、物件に合わせた運営プランをご提案いたします。</p>
+    <a href="mailto:example@email.com" class="contact-btn">無料相談を申し込む</a>
+    <p class="copyright">&copy; 2026 VUNO HIDA TAKAYAMA</p>
+</footer>
+
 </body>
 </html>
